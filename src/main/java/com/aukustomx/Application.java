@@ -9,12 +9,11 @@ public class Application {
 
     public static void main(String[] args) {
 
-        var numeroTarjeta = "1234567812345678";
-        var fechaVencimiento = new Date();
-        var tipoTarjeta = "TDD";
+        var numero = "1234567812345678";
+        var vencimiento = new Date();
+        var tipo = "TDD";
 
         var tarjetasService = new TarjetasService();
-        tarjetasService.agregarTarjeta(numeroTarjeta, fechaVencimiento, tipoTarjeta);
-
+        tarjetasService.agregarTarjeta(numero, vencimiento, tipo);
     }
 }
