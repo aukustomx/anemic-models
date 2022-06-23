@@ -147,6 +147,7 @@ public class Constants {
 This solution is worse than the previous one. It spread the state out of the class who is interested with that types,
 and, from the Java class design perspective, it's not taking care of things like utility classes, and inheritance.
 
+## Don't be affraid, let's use rich objects
 If account types is a fixed catalog we can use a Java `enum`:
 
 With this, we can add attributes and behavior to the `AccountType`, like description, tax regime, etc.
@@ -191,3 +192,94 @@ public enum AccountType {
 Let's think about the need of apply validation to the `accountNumber` at the `Account` object creation time. To achieve 
 this in a correct OOP way, we could transform `accountNumber` from a `String` to a rich model/complex object, something
 like this:
+
+```java
+//This is a value object. It hasn't an identity. It just holds a value. 
+public class AccountNumber {
+
+    private final String number;
+
+    private AccountNumber(String number) {
+        this.number = number;
+    }
+
+    //Using a factory method. It allows us many advantages such as validations, reuse of
+    // heavy object creation, etc. It saves us to write the new keyword
+    public static AccountNumber of(String number) {
+
+        //Here we can put validations
+        //The number lengh, the content, not numbers, not null, etc.
+        valid(number);
+        return new AccountNumber(number);
+    }
+
+    private static void valid(String number) {
+        //Let's start with the name. What validation we need to perform: not null, not empty,
+        // at least two word separated by a space, not numbers, etc.
+        if (isNull(number)) {
+            //log something
+            throw new IllegalArgumentException("The account number can't be null");
+        }
+
+        if (number.isBlank()) {
+            //log something
+            throw new IllegalArgumentException("The account number can't be empty");
+        }
+
+        if (!number.matches("[0-9]{11}")) {
+            //log something
+            throw new IllegalArgumentException("The account number must be eleven numbers");
+        }
+
+        //Etc, etc, etc. Validate here any other rule on name and other params
+    }
+
+    //Only accesors. When an accountNumber born, it's supposed to never change.
+    public String getNumber() {
+        return number;
+    }
+}
+```
+
+Let's see how it looks like creating and validating an AccountNumber usign both anemic vs rich domain models:
+
+```java
+import com.aukustomx.welldesigneddomain.AccountNumber;
+
+public class AccountService {
+
+    //Anemic way. All validations logic within domain service
+    public Object anemicCreateAccount(String numer) {
+        //Validate account number param before we use ot to create an AnemicAccount
+        var number = "12343";
+        if (isNull(number)) {
+            //log something
+            throw new IllegalArgumentException("The account number can't be null");
+        }
+
+        if (number.isBlank()) {
+            //log something
+            throw new IllegalArgumentException("The account number can't be empty");
+        }
+
+        if (!number.matches("[0-9]{11}")) {
+            //log something
+            throw new IllegalArgumentException("The account number must be eleven numbers");
+        }
+
+        //Once we have validated everything is needed to, we proceed to create 
+        // our anemic object using our recently validated number.
+        var anemicAccount = new AnemicAccount();
+        anemicAccount.setAccountNumber(number);
+        var accountNumber = AccountNumber.of("ABCD");
+        //...
+    }
+
+    //Rich domain models way. All validations are within the object itself.
+    public Object richCreateAccount() {
+        var accountNumber = AccountNumber.of("12343");
+        //...
+    }
+}
+```
+

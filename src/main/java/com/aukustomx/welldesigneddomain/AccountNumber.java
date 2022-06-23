@@ -2,9 +2,10 @@ package com.aukustomx.welldesigneddomain;
 
 import static java.util.Objects.isNull;
 
+//This is a value object
 public class AccountNumber {
 
-    private String number;
+    private final String number;
 
     private AccountNumber(String number) {
         this.number = number;
@@ -37,5 +38,9 @@ public class AccountNumber {
         }
 
         //Etc, etc, etc. Validate here any other rule on name and other params
+    }
+
+    public String getNumber() {
+        return number;
     }
 }

@@ -98,6 +98,31 @@ public class AnemicApp {
         //There are some object's properties that should never be allowed to change
         // For example the accountNumber or the creationDate.
 
-        //Let's return to our presentation
+        //Anemic account number
+        //Validate account number param before we create an AnemicAccountNumber
+        var number = "12343";
+        if (isNull(number)) {
+            //log something
+            throw new IllegalArgumentException("The account number can't be null");
+        }
+
+        if (number.isBlank()) {
+            //log something
+            throw new IllegalArgumentException("The account number can't be empty");
+        }
+
+        if (!number.matches("[0-9]{11}")) {
+            //log something
+            throw new IllegalArgumentException("The account number must be eleven numbers");
+        }
+
+        //Once we have validated everything is needed to, we proceed to create our anemic object using our
+        // recently validated number.
+        var anemicAccount = new AnemicAccount();
+        anemicAccount.setAccountNumber(number);
+
+        //Why do we need to have all of this logic here at the domain service? This logic is inherently part of the
+        // accountNumberObject. Let's see that version
+
     }
 }
