@@ -1,4 +1,4 @@
-#Anemic domain models
+# Anemic domain models
 
 ---
 ## Modeling beyond getters and setters
