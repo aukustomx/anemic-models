@@ -1,9 +1,7 @@
 # Anemic domain models
 
----
 ## Modeling beyond getters and setters
 
----
 ## Everythig we do is about clients... and the domain
 It's always about the client. Everything that we did before, what we are doing now, and everything that we are going to
 do in the future, in this industry, is about the client. We and our companies want to the client to be satisfied with
