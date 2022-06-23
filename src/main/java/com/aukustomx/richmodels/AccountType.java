@@ -1,4 +1,4 @@
-package com.aukustomx.welldesigneddomain;
+package com.aukustomx.richmodels;
 
 import java.util.Arrays;
 import java.util.List;

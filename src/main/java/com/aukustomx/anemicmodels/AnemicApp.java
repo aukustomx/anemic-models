@@ -1,10 +1,9 @@
-package com.aukustomx.anemicdomain;
+package com.aukustomx.anemicmodels;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
 
 public class AnemicApp {
 
@@ -29,9 +28,9 @@ public class AnemicApp {
         //save to the storage (db, file, cloud, remote service, etc)
 
         //Now, what if we need to validate input params
-        //Pretty easy too, we validate those params within this main domain service
+        //Pretty easy too, we validate those params within this domain service
 
-        //Let's start with the name. What validation we need to perform: not null, not empty,
+        //Let's start with the name. What validation do we need to perform: not null, not empty,
         // at least two word separated by a space, not numbers, etc.
         if (isNull(clientName)) {
             //log something
@@ -123,6 +122,19 @@ public class AnemicApp {
 
         //Why do we need to have all of this logic here at the domain service? This logic is inherently part of the
         // accountNumberObject. Let's see that version
+
+        //---------------Person
+        var anemicPerson = new AnemicPerson();
+        anemicPerson.setName("Juan");
+        anemicPerson.setBirthday(new Date());
+        anemicPerson.setNationality("Mexico");
+        anemicPerson.setAddress("Here");
+
+        //The doors are open to allow any client of this class (a.k.a bad programmer) to change any value
+
+        //Log when the person has born
+        var message = anemicPerson.getName() + " has born on " + anemicPerson.getBirthday().getMonth() + " " +
+                anemicPerson.getBirthday().getDay();
 
     }
 }

@@ -1,27 +1,29 @@
-package com.aukustomx.anemicdomain;
+package com.aukustomx.richmodels;
+
+import com.aukustomx.anemicmodels.AnemicCard;
 
 import java.util.List;
 
-public class AnemicAccount {
+public class Account {
 
-    private String accountNumber;
-    private String accountType;
+    private AccountNumber accountNumber;
+    private AccountType accountType;
     private String creationDate;
     private List<AnemicCard> cards;
 
-    public String getAccountNumber() {
+    public AccountNumber getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) {
+    public void setAccountNumber(AccountNumber accountNumber) {
         this.accountNumber = accountNumber;
     }
 
-    public String getAccountType() {
+    public AccountType getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(String accountType) {
+    public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
     }
 

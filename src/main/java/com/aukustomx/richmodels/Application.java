@@ -1,6 +1,4 @@
-package com.aukustomx.welldesigneddomain;
-
-import java.util.Date;
+package com.aukustomx.richmodels;
 
 public class Application {
 

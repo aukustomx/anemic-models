@@ -1,4 +1,4 @@
-package com.aukustomx.anemicdomain;
+package com.aukustomx.anemicmodels;
 
 import java.util.Date;
 
