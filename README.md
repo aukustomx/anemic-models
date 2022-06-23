@@ -249,7 +249,7 @@ import com.aukustomx.welldesigneddomain.AccountNumber;
 public class AccountService {
 
     //Anemic way. All validations logic within domain service
-    public Object anemicCreateAccount(String numer) {
+    public Object anemicCreateAccount(String number) {
         //Validate account number param before we use ot to create an AnemicAccount
         var number = "12343";
         if (isNull(number)) {
@@ -276,8 +276,8 @@ public class AccountService {
     }
 
     //Rich domain models way. All validations are within the object itself.
-    public Object richCreateAccount() {
-        var accountNumber = AccountNumber.of("12343");
+    public Object richCreateAccount(String number) {
+        var accountNumber = AccountNumber.of(number);
         //...
     }
 }
