@@ -1,8 +1,8 @@
-package com.aukustomx.domain.model;
+package com.aukustomx.anemicdomain;
 
 import java.util.Date;
 
-public class Tarjeta {
+public class AnemicTarjeta {
 
     //Primitive Obsesion
     private String numeroTarjeta;
